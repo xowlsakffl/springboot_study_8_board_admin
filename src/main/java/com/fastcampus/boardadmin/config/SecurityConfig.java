@@ -28,7 +28,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
                 .formLogin(withDefaults())
                 .logout(logout -> logout.logoutSuccessUrl("/"))
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
+                .oauth2Login(withDefaults())
                 .build();
     }
 }
