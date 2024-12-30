@@ -1,10 +1,6 @@
 package com.fastcampus.boardadmin.dto;
 
-import com.fastcampus.boardadmin.domain.UserAccount;
-import com.fastcampus.boardadmin.domain.constant.RoleType;
-
 import java.time.LocalDateTime;
-import java.util.Set;
 
 public record UserAccountDto(
         String userId,

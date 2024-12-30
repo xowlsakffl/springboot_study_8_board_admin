@@ -42,16 +42,16 @@ class ArticleManagementServiceTest {
             this.sut = sut;
         }
 
-        @DisplayName("회원 API을 호출하면, 회원 정보를 가져온다.")
+        @DisplayName("게시글 API를 호출하면, 게시글을 가져온다.")
         @Test
-        void givenNothing_whenCallingUserAccountApi_thenReturnsUserAccountList() {
-            // Arrange
+        void givenNothing_whenCallingArticleApi_thenReturnsArticleList() {
+            // Given
 
-            // Act
-            List<UserAccountDto> result = sut.getUserAccounts();
+            // When
+            List<ArticleDto> result = sut.getArticles();
 
-            // Assert
-            System.out.println(result.stream().findFirst()); // 이 테스트의 목적은 API 호출 결과를 관찰하는 것
+            // Then
+            System.out.println(result.stream().findFirst());
             assertThat(result).isNotNull();
         }
     }
