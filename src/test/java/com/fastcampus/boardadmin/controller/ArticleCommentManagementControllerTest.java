@@ -1,6 +1,5 @@
 package com.fastcampus.boardadmin.controller;
 
-import com.fastcampus.boardadmin.config.GlobalControllerConfig;
 import com.fastcampus.boardadmin.config.TestSecurityConfig;
 import com.fastcampus.boardadmin.dto.ArticleCommentDto;
 import com.fastcampus.boardadmin.dto.UserAccountDto;
@@ -25,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("컨트롤러 - 댓글 관리")
-@Import({TestSecurityConfig.class, GlobalControllerConfig.class})
+@Import({TestSecurityConfig.class})
 @WebMvcTest(ArticleCommentManagementController.class)
 class ArticleCommentManagementControllerTest {
 
