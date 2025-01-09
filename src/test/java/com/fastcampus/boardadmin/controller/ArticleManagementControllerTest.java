@@ -38,6 +38,7 @@ class ArticleManagementControllerTest {
         this.mvc = mvc;
     }
 
+    @WithMockUser(username = "tester", roles = "USER")
     @DisplayName("[view][GET] 게시글 관리 페이지 - 정상 호출")
     @Test
     public void givenNothing_whenRequestingArticleManagementView_thenReturns() throws Exception{
