@@ -29,7 +29,8 @@ public class AdminAccount extends AuditingFields {
 
     @Convert(converter = RoleTypesConverter.class)
     @Column(nullable = false)
-    private Set<RoleType> roleTypes = new LinkedHashSet<>(); // 중간테이블이 아닌 컬럼에 1,2,3 처럼 문자열로 넣음
+    private Set<RoleType> roleTypes = new LinkedHashSet<>();
+
 
     @Setter @Column(length = 100) private String email;
     @Setter @Column(length = 100) private String nickname;
@@ -65,7 +66,7 @@ public class AdminAccount extends AuditingFields {
         this.getRoleTypes().addAll(roleTypes);
     }
 
-    public void removeRoleType(RoleType roleType){
+    public void removeRoleType(RoleType roleType) {
         this.getRoleTypes().remove(roleType);
     }
 

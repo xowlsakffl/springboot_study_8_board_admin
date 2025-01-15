@@ -7,7 +7,6 @@ import com.fastcampus.boardadmin.service.AdminAccountService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Role;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,10 +29,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        String[] rolesAboveManager = {RoleType.MANAGER.name(), RoleType.ADMIN.name(), RoleType.DEVELOPER.name()};
+        String[] rolesAboveManager = {RoleType.MANAGER.name(), RoleType.DEVELOPER.name(), RoleType.ADMIN.name()};
+
         return http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // static 리소스 허용
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers(HttpMethod.POST, "/**").hasAnyRole(rolesAboveManager)
                         .requestMatchers(HttpMethod.DELETE, "/**").hasAnyRole(rolesAboveManager)
                         .anyRequest().authenticated()
@@ -44,12 +44,14 @@ public class SecurityConfig {
                 .build();
     }
 
+    @Bean
     public UserDetailsService userDetailsService(AdminAccountService adminAccountService) {
         return username -> adminAccountService
                 .searchUser(username)
                 .map(BoardAdminPrincipal::from)
                 .orElseThrow(() -> new UsernameNotFoundException("유저를 찾을 수 없습니다 - username: " + username));
     }
+
     /**
      * <p>
      * OAuth 2.0 기술을 이용한 인증 정보를 처리한다.
@@ -97,4 +99,5 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
+
 }
